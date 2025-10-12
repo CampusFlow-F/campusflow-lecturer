@@ -8,7 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { GraduationCap } from "lucide-react";
+import Logo from "@/assets/imgs/logobg.png";
+import BackgroundSlideshow from "@/components/BackgroundSlideshow";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -109,12 +110,14 @@ const Auth = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-primary/5 via-background to-accent/5 p-4">
+      <BackgroundSlideshow />
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-strong">
-            <GraduationCap className="h-8 w-8 text-white" />
+          <div className="mb-4 flex items-center justify-center">
+            <img src={Logo} alt="Logo" className="h-20 w-20 rounded-2xl" />
+
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold text-foreground/90">
             Lecturer Portal
           </h1>
           <p className="mt-2 text-muted-foreground">
