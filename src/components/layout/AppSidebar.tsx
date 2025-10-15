@@ -59,10 +59,18 @@ export const AppSidebar = () => {
   };
 
   return (
-    <Sidebar className={collapsed ? "w-14" : "w-64"}>
+    <Sidebar
+      className={`${collapsed ? "w-14" : "w-64"} 
+      bg-[hsl(var(--background))] 
+      text-[hsl(var(--foreground))] 
+      border-r border-[hsl(var(--border))]`}
+    >
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-[hsl(var(--foreground))] font-semibold">
+            Menu
+          </SidebarGroupLabel>
+
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
@@ -72,9 +80,12 @@ export const AppSidebar = () => {
                       to={item.url}
                       end
                       className={({ isActive }) =>
-                        isActive
-                          ? "bg-primary text-primary-foreground font-medium"
-                          : "hover:bg-muted/50"
+                        [
+                          "flex items-center gap-2 rounded-md px-3 py-2 font-medium transition-all duration-150",
+                          isActive
+                            ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
+                            : "hover:bg-[hsl(var(--primary))]/20 hover:text-[hsl(var(--primary))]",
+                        ].join(" ")
                       }
                     >
                       <item.icon className="h-4 w-4" />
@@ -87,10 +98,11 @@ export const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter>
         <Button
           variant="ghost"
-          className="w-full justify-start gap-2"
+          className="w-full justify-start gap-2 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--primary))]/20 hover:text-[hsl(var(--primary))]"
           onClick={handleLogout}
         >
           <LogOut className="h-4 w-4" />

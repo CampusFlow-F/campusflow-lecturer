@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Calendar, FileText, MessageSquare, BookOpen, Bell } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Users, Calendar, FileText, MessageSquare, BookOpen, Bell, TrendingUp } from "lucide-react";
 
 export const Dashboard = () => {
+const [currentTime, setCurrentTime] = useState(new Date());
+
   const [stats, setStats] = useState({
     students: 0,
     timetableSlots: 0,
@@ -89,9 +92,37 @@ export const Dashboard = () => {
 
   return (
     <div className="space-y-6">
+    
       <div>
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
         <p className="text-muted-foreground">Welcome to your lecturer portal</p>
+      </div>
+      <div className="bg-gradient-to-r from-red-600 to-red-600 text-white p-6 rounded-lg">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold mb-2">Welcome!</h1>
+            <p className="text-white-100 mb-4 md:mb-0">
+              {currentTime.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+              })}
+            </p>
+            <p className="text-blue-100 text-lg font-medium">
+              {currentTime.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+              })}
+            </p>
+          </div>
+          <div className="flex items-center space-x-4">
+            <Badge variant="secondary" className="bg-white/20 text-white">
+              <TrendingUp className="w-4 h-4 mr-1" />
+              All Systems Operational
+            </Badge>
+          </div>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
